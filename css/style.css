@@ -1,0 +1,485 @@
+:root{
+  --paper:#FBFAF8; --surface:#FFFFFF; --surface-2:#F2F0EC;
+  --ink:#101114; --ink-soft:#3A3D44; --muted:#6E727A;
+  --line:#E3E0DA; --line-strong:#CFCBC2;
+  --kraft:#C68B47; --kraft-soft:#EFE0C9;
+  --cyan:#00AEEF; --magenta:#EC008C; --yellow:#FFF200;
+  --on-dark:#F4F2EE;
+  --r:2px;
+  /* A curva varrendo o canto inferior esquerdo é o motivo de forma do site.
+     Sempre no MESMO canto, para ler como sistema e não como enfeite avulso. */
+  --canto:clamp(48px,9vw,150px);
+  --pad-secao:clamp(60px,8vw,104px);
+  --esc-h1:clamp(2.3rem,5.2vw,4rem);
+  --esc-h2:clamp(1.7rem,3.3vw,2.55rem);
+  --esc-corpo:1rem;
+  --desloca-rotulo:39px;   /* 29px alinha na matematica + 10px de correcao optica */
+  --altura-curva:clamp(84px,11vw,168px);
+  --fundo-apos-hero:#F2EEE6;   /* 29px alinha na matematica + 10px de correcao optica */
+  --canto-sm:clamp(28px,5vw,64px);
+  --maxw:1180px;
+  --f-display:"Poppins",Verdana,system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* O MIV define Poppins como fonte institucional e Verdana como substituta
+     padrão. O registro "de legenda" vem de peso e entrelinhamento, não de
+     outra família. */
+  --f-label:var(--f-display);
+  --shadow:0 1px 2px rgba(16,17,20,.04),0 12px 32px -18px rgba(16,17,20,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D0E11; --surface:#131519; --surface-2:#1A1D22;
+    --ink:#F1EFEB; --ink-soft:#D2CFC9; --muted:#9AA0A8;
+    --line:#262A31; --line-strong:#3A4049;
+    --kraft:#D9A264; --kraft-soft:#2B2318; --fundo-apos-hero:#15171B;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 40px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D0E11; --surface:#131519; --surface-2:#1A1D22;
+  --ink:#F1EFEB; --ink-soft:#D2CFC9; --muted:#9AA0A8;
+  --line:#262A31; --line-strong:#3A4049;
+  --kraft:#D9A264; --kraft-soft:#2B2318; --fundo-apos-hero:#15171B;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 40px -20px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-display);font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;font-size:var(--esc-corpo)}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+h1{font-size:var(--esc-h1);font-weight:800;line-height:1.04}
+h2{font-size:var(--esc-h2)}
+h3{font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+.lead{font-size:clamp(1rem,1.5vw,1.14rem);color:var(--ink-soft);max-width:62ch}
+.small{font-size:.9rem;color:var(--muted);max-width:62ch}
+.stack{display:flex;flex-direction:column;gap:18px}
+
+/* Abertura de seção: o símbolo da marca, monocromático. A cor da identidade
+   aparece só onde tem função — não como enfeite de cada título. */
+.eyebrow{display:flex;align-items:center;gap:11px;font-family:var(--f-label);font-weight:500;font-size:.7rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.eyebrow::before{content:"";width:20px;height:19px;flex:none;
+  background:url("assets/simbolo-preto.png") center/contain no-repeat}
+.dark-block .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
+  :root:not([data-theme="light"]) .kraft-block .eyebrow::before{background-image:url("assets/simbolo-preto.png")}
+}
+:root[data-theme="dark"] .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
+:root[data-theme="dark"] .kraft-block .eyebrow::before{background-image:url("assets/simbolo-preto.png")}
+
+header.site{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:72px}
+.brand{display:flex;align-items:center}
+.logo-h{height:34px;width:auto;flex:none}
+footer .logo-h{height:42px}
+@media(max-width:520px){.logo-h{height:28px}}
+/* Versão colorida no claro, versão branca no escuro — arquivos oficiais
+   dos dois, nada de recolorir a marca por CSS. */
+.logo-neg{display:none}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .logo-pos{display:none}
+  :root:not([data-theme="light"]) .logo-neg{display:block}
+}
+:root[data-theme="dark"] .logo-pos{display:none}
+:root[data-theme="dark"] .logo-neg{display:block}
+.menu{display:flex;gap:2px;align-items:center}
+.menu a{font-size:.9rem;font-weight:500;color:var(--ink-soft);padding:8px 12px;position:relative}
+.menu a:hover{color:var(--ink)}
+.menu a.on{color:var(--ink);font-weight:600}
+.menu a.on::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;background:var(--magenta)}
+.burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--r);padding:9px 11px;cursor:pointer}
+.burger span{display:block;width:18px;height:1.5px;background:var(--ink);margin:4px 0}
+@media(max-width:900px){
+  .menu{position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--surface);border-bottom:1px solid var(--line);padding:4px 24px 20px;display:none}
+  .menu.open{display:flex}
+  .menu a{padding:14px 2px;font-size:1.05rem;border-bottom:1px solid var(--line)}
+  .menu a.on::after{display:none}
+  .burger{display:block}
+}
+
+section{padding:var(--pad-secao) 0}
+section.tight{padding:clamp(44px,5vw,64px) 0}
+/* Blocos escuros e kraft carregam a curva no mesmo canto do resto do site. */
+.dark-block{background:#101114;color:var(--on-dark);
+  border-radius:0 0 0 var(--canto);overflow:hidden}
+.dark-block h2,.dark-block h3{color:var(--on-dark)}
+.dark-block .lead{color:#C3C0BA}
+.dark-block .small{color:#9C9992}
+.dark-block .eyebrow{color:#8C8A85}
+/* Bloco kraft: fica sempre em papel claro, com o pattern de traço como
+   textura. Multiply faz o branco do arquivo sumir sobre o kraft. */
+.kraft-block{position:relative;isolation:isolate;overflow:hidden;border-radius:0 0 0 var(--canto);
+  --paper:#EFE0C9; --surface:#F7EEDF; --surface-2:#EADCC4;
+  --ink:#2A2114; --ink-soft:#4A3A25; --muted:#7A6547;
+  --line:#DCC7A5; --line-strong:#C9AE85;
+  background:var(--paper);color:var(--ink)}
+.kraft-block::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:url("assets/pattern-traco.jpg") center/460px auto repeat;mix-blend-mode:multiply;opacity:.13}
+.kraft-block h2,.kraft-block h3{color:var(--ink)}
+
+/* Hero A: papel. Sem bloco preto, sem curva. Quem carrega a abertura é o
+   produto, a hierarquia da tipografia e o espaço em branco. */
+.hero{background:var(--paper);color:var(--ink);position:relative;
+  padding-top:clamp(28px,4vw,52px);padding-bottom:clamp(48px,7vw,84px)}
+.hero-regua{height:1px;background:var(--line);margin-bottom:clamp(36px,5vw,60px)}
+/* Transição Hero → próxima seção: uma curva única, alta na esquerda, que
+   desce e vai deitando até ficar horizontal na direita. O preenchimento é a
+   cor da seção de baixo, então a sensação é de que ela entra por baixo do
+   Hero em vez de começar depois dele. */
+.hero{padding-bottom:calc(clamp(48px,7vw,84px) + var(--altura-curva))}
+.hero-curva{position:absolute;left:0;right:0;bottom:-1px;width:100%;
+  height:var(--altura-curva);display:block;z-index:0;color:var(--fundo-apos-hero)}
+.hero-curva path{fill:currentColor}
+.apos-hero{background:var(--fundo-apos-hero)}
+@media(max-width:820px){
+  /* No mobile a curva fica proporcionalmente mais alta, senão vira um risco. */
+  .hero-curva{height:clamp(64px,17vw,110px)}
+  .hero{padding-bottom:calc(clamp(48px,7vw,84px) + clamp(64px,17vw,110px))}
+}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,60px);align-items:center}
+.hero h1 em{font-style:normal;box-shadow:inset 0 -3px 0 rgba(236,0,140,.85)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:var(--r);
+  font-weight:600;font-size:.94rem;border:1px solid transparent;cursor:pointer;transition:.18s}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--magenta);color:#fff}
+.btn-ghost{border-color:var(--line-strong);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--surface)}
+.dark-block .btn-primary{background:var(--on-dark);color:#101114}
+.dark-block .btn-primary:hover{background:#FFFFFF}
+.dark-block .btn-ghost{border-color:rgba(244,242,238,.28);color:var(--on-dark)}
+.dark-block .btn-ghost:hover{background:rgba(244,242,238,.08);border-color:rgba(244,242,238,.6)}
+.hero-strip{display:flex;margin-top:44px;border-top:1px solid var(--line)}
+.hero-strip div{flex:1;padding:16px 0;font-family:var(--f-label);font-weight:500;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
+.hero-strip div:last-child{border-right:0;padding-left:0}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:26px}
+ .hero-strip{flex-wrap:wrap}.hero-strip div{flex:1 0 50%;border-right:0;padding:10px 0}}
+/* Vitrine do hero: painel com a curva varrendo o canto inferior esquerdo. */
+/* O produto e o maior elemento do hero. O recorte organico e aplicado na
+   propria foto -- placa separada criava duas superficies quase iguais, e a
+   diferenca minima entre elas aparecia como um retangulo. */
+.hero-art{position:relative;overflow:hidden;
+  border-radius:56% 44% 4px 4px / 30% 26% 4px 4px;
+  background:var(--kraft-soft)}
+.hero-placa{display:none}
+.hero-produto{display:block;width:100%;height:clamp(340px,42vw,560px);
+  object-fit:cover;object-position:50% 62%}
+@media(max-width:900px){
+  .hero-art{border-radius:52% 48% 4px 4px / 22% 20% 4px 4px}
+  .hero-produto{height:clamp(260px,58vw,420px)}
+}
+/* Faixa de números: três células com a mesma estrutura — rótulo miúdo em
+   cima, valor, descrição embaixo. Sem caixa e sem alturas soltas: só fios
+   verticais separando, e o valor limitado para nunca quebrar em duas linhas. */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(36px,5vw,52px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nums > div{padding:clamp(24px,3vw,34px) clamp(20px,2.6vw,34px);
+  display:flex;flex-direction:column;align-items:flex-start;
+  border-left:1px solid var(--line)}
+.nums > div:first-child{border-left:0;padding-left:0}
+.nums .k{font-family:var(--f-label);font-weight:600;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted)}
+.nums .n{margin-top:10px;font-size:clamp(1.45rem,2.5vw,2rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1.1;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:9px;
+  text-wrap:nowrap}
+.nums .n svg{width:1.05em;height:1.05em;flex:none;stroke-width:1.7}
+.nums .l{margin-top:12px;font-size:.9rem;line-height:1.45;color:var(--muted);max-width:28ch}
+@media(max-width:820px){
+  .nums{grid-template-columns:1fr}
+  .nums > div{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-right:0}
+  .nums > div:first-child{border-top:0}
+}
+/* Abertura de página em bloco corrido: título na largura toda e o texto
+   em duas colunas, para ocupar a página sem esticar a linha de leitura. */
+.abre h2{max-width:22ch}
+.abre-texto{margin-top:clamp(30px,3.6vw,46px);display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(26px,4vw,52px);align-items:start}
+.abre-texto .lead{max-width:none}
+@media(max-width:820px){
+  .abre-texto{grid-template-columns:1fr;gap:22px}
+  .abre h2{max-width:none}
+}
+
+.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px);align-items:start}
+/* A coluna da esquerda tem o rótulo de seção acima do título, então a da
+   direita começava mais alto. Desce o texto pela altura do rótulo para as
+   duas primeiras linhas ficarem na mesma altura. */
+.split > div:has(> .eyebrow) ~ .lead,
+.split > div:has(> .eyebrow) ~ .stack{padding-top:var(--desloca-rotulo)}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:28px}
+  .split > div:has(> .eyebrow) ~ .lead,
+  .split > div:has(> .eyebrow) ~ .stack{padding-top:0}}
+
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#26282D;border:1px solid #26282D;margin-top:38px}
+.pillars article{background:#101114;padding:32px 28px}
+.pillars .tag{font-family:var(--f-label);font-weight:500;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.pillars article:nth-child(2) .tag{color:var(--magenta)}
+.pillars h3{margin:0 0 12px;font-size:1.3rem}
+
+/* Bloco de confiança: sem curva e sem faixa. O grafismo é o próprio símbolo
+   da marca, gigante e cortado pela borda — do jeito que o MIV aplica na
+   papelaria. Fica como marca d'água, não como listra. */
+.confianca{border-radius:0;position:relative;overflow:hidden}
+.confianca::before{content:"";position:absolute;right:-6%;top:50%;transform:translateY(-50%);
+  width:min(46%,520px);aspect-ratio:1;z-index:0;pointer-events:none;
+  background:url("assets/simbolo-branco.png") center/contain no-repeat;opacity:.045}
+.confianca > .wrap{position:relative;z-index:1}
+/* Sem caixas: os dois pilares lado a lado, separados por um fio. */
+.confianca .pillars{background:none;border:0;gap:0;margin-top:clamp(30px,4vw,46px);
+  border-top:1px solid rgba(244,242,238,.16);padding-top:clamp(28px,3.6vw,40px)}
+.confianca .pillars article{background:none;padding:0 clamp(24px,3vw,44px) 0 0}
+.confianca .pillars article:nth-child(2){padding:0 0 0 clamp(24px,3vw,44px);
+  border-left:1px solid rgba(244,242,238,.16)}
+@media(max-width:720px){
+  .confianca .pillars article{padding:0 0 26px}
+  .confianca .pillars article:nth-child(2){padding:26px 0 0;border-left:0;
+    border-top:1px solid rgba(244,242,238,.16)}
+}
+.confianca .fecho{border-left:3px solid var(--magenta);padding-left:20px;margin-top:clamp(30px,4vw,48px)}
+/* Frase que fecha o bloco de confiança, com o peso de uma declaração. */
+.fecho{margin-top:clamp(28px,4vw,44px);font-size:clamp(1.05rem,1.8vw,1.28rem);
+  font-weight:600;letter-spacing:-.01em;line-height:1.5;color:var(--on-dark);max-width:60ch}
+/* Código da certificação, abaixo do texto de cada selo. */
+.cod{margin-top:14px;font-family:var(--f-label);font-weight:600;font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pillars ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.pillars li{font-size:.92rem;color:#B6B4AE;padding-left:18px;position:relative}
+.pillars li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:1.5px;background:#6A6D74}
+@media(max-width:720px){.pillars{grid-template-columns:1fr}}
+
+.grid-p{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media(max-width:900px){.grid-p{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid-p{grid-template-columns:1fr}}
+.card{background:none;border:0;border-radius:0;overflow:visible;display:flex;flex-direction:column;transition:.22s;cursor:pointer;text-align:left;width:100%;padding:0;font:inherit}
+.card:hover{transform:translateY(-4px)}
+.card .thumb{aspect-ratio:4/3;background:var(--surface-2);display:grid;place-items:center;position:relative;overflow:hidden;border-radius:var(--r) var(--r) var(--r) var(--canto-sm)}
+.card .thumb svg{height:100%;width:auto;transition:transform .3s ease}
+.card:hover .thumb svg{transform:scale(1.05)}
+/* Foto do catálogo: preenche o quadro inteiro, sem respiro interno. */
+.card.tem-foto .thumb{padding:0;background:#FFFFFF}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.card:hover .thumb img{transform:scale(1.04)}
+.card .body{padding:18px 2px 0;display:flex;flex-direction:column;gap:12px;flex:1}
+.card .body h3{font-size:1.05rem}
+.card .body p{font-size:.88rem;color:var(--muted)}
+.card .go{margin-top:auto;padding-top:14px;font-family:var(--f-label);font-weight:500;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft)}
+.card:hover .go{color:var(--magenta)}
+.pers{position:absolute;top:10px;left:10px;font-family:var(--f-label);font-weight:500;font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:3px 7px}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 28px}
+.filters-sub{margin-top:-14px;margin-bottom:24px;padding-left:2px}
+.filters-sub button{font-size:.8rem;padding:7px 14px;border-style:dashed}
+.filters-sub button.on{border-style:solid}
+.filters button{background:none;border:1px solid var(--line-strong);padding:9px 16px;border-radius:99px;
+  font-size:.85rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.16s}
+.filters button:hover{border-color:var(--ink);color:var(--ink)}
+.filters button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.gallery{grid-template-columns:1fr}}
+.shot{aspect-ratio:1/1;background:var(--surface-2);border:1px solid var(--line);position:relative;border-radius:var(--r) var(--r) var(--r) var(--canto-sm);
+  display:grid;place-items:center;padding:24px;overflow:hidden;animation:pop .34s cubic-bezier(.2,.7,.3,1) both}
+.shot svg{height:86%;width:auto;transition:transform .35s ease}
+.shot:hover svg{transform:scale(1.06)}
+.shot .cat{position:absolute;left:0;bottom:0;font-family:var(--f-label);font-weight:500;font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);background:var(--surface);border-top:1px solid var(--line);
+  border-right:1px solid var(--line);padding:6px 12px;opacity:0;transform:translateY(6px);transition:.2s}
+.shot:hover .cat{opacity:1;transform:none}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Prova social: uma faixa horizontal continua, da direita para a esquerda.
+   O trilho leva duas copias da sequencia e anda exatamente a largura de uma
+   delas -- por isso o deslocamento desconta metade do gap, senao a emenda
+   daria um pulinho a cada volta. Tratamento dos logos identico ao anterior. */
+.clientes{padding:clamp(56px,7vw,96px) 0}
+.clientes-faixa{margin-top:clamp(34px,4.5vw,56px);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.clientes-trilho{--g:clamp(40px,5vw,76px);
+  display:flex;width:max-content;gap:var(--g);
+  animation:esteira-clientes 40s linear infinite}
+.clientes-leva{display:flex;align-items:center;gap:var(--g)}
+.clientes-faixa:hover .clientes-trilho{animation-play-state:paused}
+.clientes-trilho img{flex:0 0 auto;width:clamp(112px,14vw,196px);max-width:none;
+  height:auto;max-height:80px;object-fit:contain;
+  filter:grayscale(1);opacity:.62;
+  transition:filter .35s ease,opacity .35s ease,transform .35s ease}
+.clientes-trilho img:hover{filter:none;opacity:1;transform:scale(1.02)}
+@keyframes esteira-clientes{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(-50% - (var(--g) / 2)))}
+}
+@media(max-width:600px){
+  .clientes-trilho{--g:38px}
+  .clientes-trilho img{width:112px;max-height:70px}
+}
+/* Sem animacao, a faixa vira uma linha estatica legivel em vez de sumir. */
+@media(prefers-reduced-motion:reduce){
+  .clientes-trilho{animation:none;flex-wrap:wrap;width:100%;justify-content:center}
+  .clientes-leva:last-child{display:none}
+  .clientes-leva{flex-wrap:wrap;justify-content:center}
+  .clientes-faixa{-webkit-mask-image:none;mask-image:none}
+}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media(max-width:760px){.quotes{grid-template-columns:1fr}}
+.quote{background:none;border:0;border-top:1px solid var(--line-strong);padding:24px 0 0;display:flex;flex-direction:column;gap:16px}
+.quote .qm{width:26px;height:6px;flex:none;background:linear-gradient(90deg,var(--cyan) 0 33%,var(--magenta) 33% 66%,var(--yellow) 66% 100%)}
+.quote p{font-size:.96rem;color:var(--ink-soft)}
+.quote .who{margin-top:auto;font-family:var(--f-label);font-weight:500;font-size:.7rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.video{margin-top:18px;border:1px solid var(--line);background:var(--surface-2);aspect-ratio:16/6;
+  display:grid;place-items:center;gap:12px;text-align:center;padding:24px}
+.play{width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;margin-inline:auto}
+
+/* Linha do tempo: eixo contínuo com um marco por etapa. */
+.tl{position:relative;margin-top:44px;padding-left:0}
+.tl .row{position:relative;display:grid;grid-template-columns:150px 1fr;gap:44px;
+  padding:0 0 44px 0;align-items:start}
+.tl .row:last-child{padding-bottom:0}
+/* eixo vertical entre os marcos */
+.tl .row::before{content:"";position:absolute;left:calc(150px + 21px);top:14px;bottom:-14px;
+  width:1px;background:var(--line-strong)}
+.tl .row:last-child::before{display:none}
+/* marco */
+.tl .row::after{content:"";position:absolute;left:150px;top:7px;width:15px;height:15px;
+  border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.tl .row:first-child::after{background:var(--ink)}
+.tl .yr{font-family:var(--f-label);font-weight:600;font-size:.86rem;color:var(--ink);
+  letter-spacing:.1em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+  text-align:right;padding-top:2px}
+.tl .row:not(:first-child) .yr{color:var(--muted)}
+.tl h3{margin-bottom:8px;font-size:1.2rem}
+@media(max-width:700px){
+  .tl .row{grid-template-columns:1fr;gap:6px;padding-left:34px;padding-bottom:34px}
+  .tl .row::after{left:0;top:8px}
+  .tl .row::before{left:7px;top:24px;bottom:-8px}
+  .tl .yr{text-align:left;margin-bottom:4px}
+}
+
+/* Missão, visão e valores: três blocos separados por régua, no mesmo ritmo
+   de rótulo + conteúdo que a linha do tempo usa logo acima nesta página. */
+.mvv{background:var(--surface-2);border-radius:0 0 0 var(--canto)}
+.mvv-topo{margin-bottom:clamp(30px,4vw,46px)}
+.mvv-bloco{display:grid;grid-template-columns:170px 1fr;gap:clamp(24px,4vw,48px);
+  padding:clamp(28px,3.6vw,40px) 0;border-top:1px solid var(--line-strong);align-items:start}
+.mvv-bloco:first-of-type{border-top:0;padding-top:0}
+.mvv-bloco:last-of-type{padding-bottom:0}
+.mvv-rot{font-family:var(--f-label);font-weight:700;font-size:.86rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);padding-top:4px}
+.mvv-bloco > p{font-size:clamp(1.04rem,1.6vw,1.22rem);line-height:1.55;color:var(--ink);
+  font-weight:500;letter-spacing:-.01em;text-wrap:pretty;max-width:56ch}
+@media(max-width:760px){
+  .mvv-bloco{grid-template-columns:1fr;gap:14px}
+  .mvv-rot{padding-top:0}
+}
+
+/* Valores: um por linha, ícone à esquerda, régua fina separando. */
+.valores{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.valores li{display:flex;align-items:flex-start;gap:18px;padding:16px 0;
+  border-bottom:1px solid var(--line)}
+.valores li:first-child{padding-top:0}
+.valores li:last-child{border-bottom:0;padding-bottom:0}
+.valores li svg{width:29px;height:29px;flex:none;color:var(--ink);margin-top:2px}
+.valores li span{display:block;font-size:1.06rem;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.valores li p{margin-top:4px;font-size:.94rem;line-height:1.5;color:var(--ink-soft);max-width:56ch}
+@media(max-width:520px){
+  .valores li{gap:14px;padding:14px 0}
+  .valores li svg{width:25px;height:25px}
+  .valores li span{font-size:1rem}
+}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#26282D;border:1px solid #26282D;margin-top:34px}
+.contact-grid > *{background:#101114;padding:24px 26px;display:flex;flex-direction:column;gap:6px}
+.contact-grid .k{font-family:var(--f-label);font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#8C8A85}
+.contact-grid .v{font-size:1.02rem;font-weight:500;color:var(--on-dark)}
+.contact-grid a:hover .v{color:var(--cyan)}
+@media(max-width:640px){.contact-grid{grid-template-columns:1fr}}
+/* Mapa: iframe do Google por cima, com um cartão de endereço por baixo que
+   aparece se o iframe for bloqueado (CSP, bloqueador, offline). */
+.map{margin-top:18px;position:relative;border:1px solid var(--line);background:var(--surface-2);
+  aspect-ratio:21/8;min-height:400px;overflow:hidden;border-radius:var(--r) var(--r) var(--r) var(--canto-sm)}
+.map iframe{width:100%;height:100%;border:0;display:block}
+.map-fb{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;text-align:center;padding:24px;color:var(--muted)}
+.map-fb svg{width:32px;height:32px;color:var(--ink)}
+.map-fb span{font-size:.92rem;max-width:42ch}
+@media(max-width:640px){.map{aspect-ratio:4/3;min-height:320px}}
+/* Placa branca para o logo vertical — garante a marca sempre sobre papel */
+.logo-plate{background:var(--surface);border:1px solid var(--line);padding:26px;display:grid;place-items:center;align-self:flex-start;width:200px}
+.logo-plate img{width:100%;height:auto}
+/* Instagram */
+/* No rodapé o link do Instagram é uma linha só. Na grade de contato ele é
+   uma célula como as outras — o ícone entra ao lado do @, e não no lugar
+   do layout da célula. */
+footer .ig{display:inline-flex;align-items:center;gap:8px}
+.ig-ico,footer .ig > svg{width:17px;height:17px;flex:none}
+.contact-grid .ig .v{display:flex;align-items:center;gap:8px}
+
+.certs{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+@media(max-width:820px){.certs{grid-template-columns:1fr}}
+.cert{border:0;background:none;padding:0;display:flex;gap:24px;align-items:flex-start}
+.dark-block .cert{border:0;background:none;padding:0;display:flex;gap:24px;align-items:flex-start}
+.cert h3{font-size:1.15rem;margin-bottom:8px}
+/* Selos: sempre sobre placa branca fixa — as marcas de certificação
+   não podem ser recoloridas nem invertidas para o tema escuro. */
+.seal{background:#FFFFFF;border:1px solid #E3E0DA;flex:none;display:grid;place-items:center;padding:10px}
+.seal img{width:100%;height:auto;display:block}
+.seal-fsc{width:96px}
+.seal-cf{width:122px;padding:14px 10px}
+@media(max-width:420px){.cert{border:0;background:none;padding:0;display:flex;gap:24px;align-items:flex-start}}
+.seal-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+.seal-row .seal-fsc{width:56px}
+.seal-row .seal-cf{width:92px}
+
+footer{border-top:1px solid var(--line);padding:44px 0 32px;background:var(--surface)}
+.foot{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start}
+.foot nav{display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--muted)}
+.foot nav a:hover{color:var(--ink)}
+/* No celular todo alvo tocavel precisa de area confortavel. Os links do
+   rodape, o do Instagram e a marca no topo ficavam em 23-28px de altura. */
+@media(max-width:760px){
+  .foot nav{gap:0}
+  .foot nav a{display:flex;align-items:center;min-height:44px}
+  .foot .info{gap:2px}
+  .foot .info a{display:flex;align-items:center;min-height:44px}
+  .brand{min-height:44px}
+  .menu a{min-height:48px;display:flex;align-items:center}
+}
+.foot .info{font-size:.88rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.copy{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--f-label);font-weight:500;
+  font-size:.68rem;letter-spacing:.08em;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.wa{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:10px;
+  background:#101114;color:#fff;padding:13px 18px 13px 15px;border-radius:99px;font-weight:600;font-size:.9rem;
+  box-shadow:0 10px 30px -8px rgba(0,0,0,.45);transition:.2s}
+.wa:hover{background:#25D366;color:#08210F}
+.wa svg{width:20px;height:20px;flex:none}
+@media(max-width:560px){.wa span{display:none}.wa{padding:15px;border-radius:50%}}
+/* o botao flutuante fica sobre o rodape: reserva a altura dele no fim da pagina */
+@media(max-width:760px){footer{padding-bottom:96px}}
+
+/* A entrada suave so vale quando o script assume o controle. Sem esta
+   trava, qualquer falha do observer deixava numeros, pilares e selos
+   invisiveis para sempre. */
+html.anima .reveal{opacity:0;transform:translateY(18px)}
+html.anima .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.in,.shot{opacity:1;transform:none;animation:none;transition:none}}
+.note{font-family:var(--f-label);font-weight:400;font-size:.68rem;letter-spacing:.05em;line-height:1.7;color:var(--muted);
+  border-left:2px solid var(--yellow);padding-left:12px;margin-top:26px;max-width:70ch}
+.center-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+/* No desktop o botão fica na mesma linha de base do título. Sem isto, um
+   título mais longo empurra o botão para a linha de baixo e duas seções
+   irmãs ficam com composições diferentes. */
+@media(min-width:900px){
+  .sec-head{flex-wrap:nowrap;gap:clamp(32px,5vw,64px)}
+  .sec-head > div{min-width:0}
+  .sec-head .btn{flex:none}
+}
