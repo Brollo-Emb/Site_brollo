@@ -63,14 +63,14 @@ p{margin:0}
 .eyebrow{display:flex;align-items:center;gap:11px;font-family:var(--f-label);font-weight:500;font-size:.7rem;
   letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
 .eyebrow::before{content:"";width:20px;height:19px;flex:none;
-  background:url("assets/simbolo-preto.png") center/contain no-repeat}
-.dark-block .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
+  background:url("../assets/simbolo-preto.png") center/contain no-repeat}
+.dark-block .eyebrow::before{background-image:url("../assets/simbolo-branco.png")}
 @media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
-  :root:not([data-theme="light"]) .kraft-block .eyebrow::before{background-image:url("assets/simbolo-preto.png")}
+  :root:not([data-theme="light"]) .eyebrow::before{background-image:url("../assets/simbolo-branco.png")}
+  :root:not([data-theme="light"]) .kraft-block .eyebrow::before{background-image:url("../assets/simbolo-preto.png")}
 }
-:root[data-theme="dark"] .eyebrow::before{background-image:url("assets/simbolo-branco.png")}
-:root[data-theme="dark"] .kraft-block .eyebrow::before{background-image:url("assets/simbolo-preto.png")}
+:root[data-theme="dark"] .eyebrow::before{background-image:url("../assets/simbolo-branco.png")}
+:root[data-theme="dark"] .kraft-block .eyebrow::before{background-image:url("../assets/simbolo-preto.png")}
 
 header.site{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:72px}
@@ -120,7 +120,7 @@ section.tight{padding:clamp(44px,5vw,64px) 0}
   --line:#DCC7A5; --line-strong:#C9AE85;
   background:var(--paper);color:var(--ink)}
 .kraft-block::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:url("assets/pattern-traco.jpg") center/460px auto repeat;mix-blend-mode:multiply;opacity:.13}
+  background:url("../assets/pattern-traco.jpg") center/460px auto repeat;mix-blend-mode:multiply;opacity:.13}
 .kraft-block h2,.kraft-block h3{color:var(--ink)}
 
 /* Hero A: papel. Sem bloco preto, sem curva. Quem carrega a abertura é o
@@ -229,7 +229,7 @@ section.tight{padding:clamp(44px,5vw,64px) 0}
 .confianca{border-radius:0;position:relative;overflow:hidden}
 .confianca::before{content:"";position:absolute;right:-6%;top:50%;transform:translateY(-50%);
   width:min(46%,520px);aspect-ratio:1;z-index:0;pointer-events:none;
-  background:url("assets/simbolo-branco.png") center/contain no-repeat;opacity:.045}
+  background:url("../assets/simbolo-branco.png") center/contain no-repeat;opacity:.045}
 .confianca > .wrap{position:relative;z-index:1}
 /* Sem caixas: os dois pilares lado a lado, separados por um fio. */
 .confianca .pillars{background:none;border:0;gap:0;margin-top:clamp(30px,4vw,46px);
