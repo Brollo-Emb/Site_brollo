@@ -3213,3 +3213,39 @@ render();
   );
 
 })();
+(function () {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function trocarFavicon() {
+    const arquivo = media.matches
+      ? "assets/simbolo-branco.png"
+      : "assets/simbolo-colorido.png";
+
+    // Remove o favicon atual
+    const antigo = document.getElementById("favicon");
+
+    if (antigo) {
+      antigo.remove();
+    }
+
+    // Cria um novo favicon
+    const favicon = document.createElement("link");
+
+    favicon.id = "favicon";
+    favicon.rel = "icon";
+    favicon.type = "image/png";
+    favicon.href = arquivo + "?tema=" + (media.matches ? "dark" : "light");
+
+    document.head.appendChild(favicon);
+  }
+
+  // Define ao carregar
+  trocarFavicon();
+
+  // Troca imediatamente quando o tema do sistema mudar
+  if (media.addEventListener) {
+    media.addEventListener("change", trocarFavicon);
+  } else {
+    media.addListener(trocarFavicon);
+  }
+})();
