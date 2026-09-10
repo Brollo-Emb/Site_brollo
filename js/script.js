@@ -1110,75 +1110,75 @@ PAGES.home = function(){
      DEPOIMENTOS
      ======================================================== */
 
-  '<section class="depoimentos-home">'+
+  // '<section class="depoimentos-home">'+
 
-    '<div class="wrap">'+
+  //   '<div class="wrap">'+
 
-      '<div class="depo-topo">'+
+  //     '<div class="depo-topo">'+
 
-        '<div class="depo-titulo">'+
+  //       '<div class="depo-titulo">'+
 
-          '<div class="eyebrow">Depoimentos</div>'+
+  //         '<div class="eyebrow">Depoimentos</div>'+
 
-          '<h2>'+
-            'O que nossos<br>clientes dizem.'+
-          '</h2>'+
+  //         '<h2>'+
+  //           'O que nossos<br>clientes dizem.'+
+  //         '</h2>'+
 
-        '</div>'+
+  //       '</div>'+
 
-        '<p class="depo-intro">'+
-          'Mais do que embalagens,<br>'+
-          'construímos parcerias que<br>'+
-          'crescem com o tempo.'+
-        '</p>'+
+  //       '<p class="depo-intro">'+
+  //         'Mais do que embalagens,<br>'+
+  //         'construímos parcerias que<br>'+
+  //         'crescem com o tempo.'+
+  //       '</p>'+
 
-      '</div>'+
-
-
-      '<div class="depo-slider">'+
-
-        '<button class="depo-arrow depo-prev" type="button" aria-label="Depoimentos anteriores">'+
-
-          '<svg viewBox="0 0 24 24" aria-hidden="true">'+
-            '<path d="M15 18l-6-6 6-6"></path>'+
-          '</svg>'+
-
-        '</button>'+
+  //     '</div>'+
 
 
-        '<div class="depo-viewport">'+
+  //     '<div class="depo-slider">'+
 
-          '<div class="depo-track">'+
-            montarSlidesDepoimentos()+
-          '</div>'+
+  //       '<button class="depo-arrow depo-prev" type="button" aria-label="Depoimentos anteriores">'+
 
-        '</div>'+
+  //         '<svg viewBox="0 0 24 24" aria-hidden="true">'+
+  //           '<path d="M15 18l-6-6 6-6"></path>'+
+  //         '</svg>'+
 
-
-        '<button class="depo-arrow depo-next" type="button" aria-label="Próximos depoimentos">'+
-
-          '<svg viewBox="0 0 24 24" aria-hidden="true">'+
-            '<path d="M9 18l6-6-6-6"></path>'+
-          '</svg>'+
-
-        '</button>'+
-
-      '</div>'+
+  //       '</button>'+
 
 
-      '<div class="depo-dots">'+
+  //       '<div class="depo-viewport">'+
 
-        '<button type="button" class="on" data-depo-page="0" aria-label="Página 1"></button>'+
+  //         '<div class="depo-track">'+
+  //           montarSlidesDepoimentos()+
+  //         '</div>'+
 
-        '<button type="button" data-depo-page="1" aria-label="Página 2"></button>'+
+  //       '</div>'+
 
-        '<button type="button" data-depo-page="2" aria-label="Página 3"></button>'+
 
-      '</div>'+
+  //       '<button class="depo-arrow depo-next" type="button" aria-label="Próximos depoimentos">'+
 
-    '</div>'+
+  //         '<svg viewBox="0 0 24 24" aria-hidden="true">'+
+  //           '<path d="M9 18l6-6-6-6"></path>'+
+  //         '</svg>'+
 
-  '</section>'+
+  //       '</button>'+
+
+  //     '</div>'+
+
+
+  //     '<div class="depo-dots">'+
+
+  //       '<button type="button" class="on" data-depo-page="0" aria-label="Página 1"></button>'+
+
+  //       '<button type="button" data-depo-page="1" aria-label="Página 2"></button>'+
+
+  //       '<button type="button" data-depo-page="2" aria-label="Página 3"></button>'+
+
+  //     '</div>'+
+
+  //   '</div>'+
+
+  // '</section>'+
 
 
   blocoContato(
@@ -1214,9 +1214,9 @@ PAGES.produtos = function(){
             'A Brolo produz diferentes soluções em papel, todas com possibilidade de personalização.'+
           '</p>'+
 
-          '<p class="lead">'+
-            'Escolha um produto para conhecer e veja no Portfólio exemplos de como ele pode ganhar a identidade da sua empresa.'+
-          '</p>'+
+          // '<p class="lead">'+
+          //   'Escolha um produto para conhecer e veja no Portfólio exemplos de como ele pode ganhar a identidade da sua empresa.'+
+          // '</p>'+
 
         '</div>'+
 
@@ -1318,9 +1318,9 @@ PAGES.portfolio = function(cat, sub){
             'Cada marca tem uma identidade. Aqui, você encontra uma seleção de embalagens produzidas pela Brolo em diferentes formatos, cores e aplicações.'+
           '</p>'+
 
-          '<p class="small">'+
-            'Sem nomes. Sem exposição da carteira. O foco é no trabalho.'+
-          '</p>'+
+          // '<p class="small">'+
+          //   'Sem nomes. Sem exposição da carteira. O foco é no trabalho.'+
+          // '</p>'+
 
         '</div>'+
 
