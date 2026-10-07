@@ -322,15 +322,15 @@ function art(shape, tone, accent, label){
 
 var PRODUTOS = [
 
-  {
-    id:"pao",
-    nome:"Sacos publicitários para pães",
-    cat:"pao",
-    sub:"publicitario",
-    foto:"assets/prod-pao.jpg",
-    desc:"Embalagens de papel desenvolvidas para acondicionar e valorizar pães, com possibilidade de impressão personalizada.",
-    art:["pao","kraft","#101114","PADARIA"]
-  },
+  // {
+  //   id:"pao",
+  //   nome:"Sacos publicitários para pães",
+  //   cat:"pao",
+  //   sub:"publicitario",
+  //   foto:"assets/prod-pao.jpg",
+  //   desc:"Embalagens de papel desenvolvidas para acondicionar e valorizar pães, com possibilidade de impressão personalizada.",
+  //   art:["pao","kraft","#101114","PADARIA"]
+  // },
 
   {
     id:"pao-pers",
@@ -360,14 +360,14 @@ var PRODUTOS = [
     art:["sacola","branco","#101114","SUA MARCA"]
   },
 
-  {
-    id:"mini",
-    nome:"Sacos mini",
-    cat:"mini",
-    foto:"assets/prod-mini.jpg",
-    desc:"Formatos menores para aplicações que pedem praticidade sem abrir mão da apresentação.",
-    art:["mini","kraft","#101114","MINI"]
-  },
+  // {
+  //   id:"mini",
+  //   nome:"Sacos mini",
+  //   cat:"mini",
+  //   foto:"assets/prod-mini.jpg",
+  //   desc:"Formatos menores para aplicações que pedem praticidade sem abrir mão da apresentação.",
+  //   art:["mini","kraft","#101114","MINI"]
+  // },
 
   {
     id:"talher",
@@ -577,20 +577,20 @@ var CATS = [
   {
     id:"pao",
     nome:"Sacos para pães",
-    subs:[
-      {
-        id:"todos",
-        nome:"Todos"
-      },
-      {
-        id:"publicitario",
-        nome:"Publicitários"
-      },
-      {
-        id:"personalizado",
-        nome:"Personalizados"
-      }
-    ]
+    // subs:[
+    //   {
+    //     id:"todos",
+    //     nome:"Todos"
+    //   },
+    //   {
+    //     id:"publicitario",
+    //     nome:"Publicitários"
+    //   },
+    //   {
+    //     id:"personalizado",
+    //     nome:"Personalizados"
+    //   }
+    // ]
   },
 
   {
@@ -864,7 +864,7 @@ PAGES.home = function(){
 
           '<div class="hero-placa" aria-hidden="true"></div>'+
 
-          '<img class="hero-produto" src="assets/prod-herosacola.jpg" alt="Sacolas de papel personalizadas produzidas pela Brolo">'+
+          '<img class="hero-produto" src="assets/embalagens.jpg" alt="Sacolas de papel personalizadas produzidas pela Brolo">'+
 
         '</div>'+
 
