@@ -603,10 +603,10 @@ var CATS = [
     nome:"Sacolas de papel"
   },
 
-  {
-    id:"mini",
-    nome:"Sacos mini"
-  },
+  // {
+  //   id:"mini",
+  //   nome:"Sacos mini"
+  // },
 
   {
     id:"talher",
@@ -628,29 +628,41 @@ var CATS = [
 
 var PORTFOLIO = [
 
-  ["pao","kraft","#101114","PANIFÍCIO","pao","publicitario"],
-  ["pao","branco","#101114","PADARIA","pao","publicitario"],
-  ["pao","kraft","#00AEEF","REDE PÃES","pao","personalizado"],
-  ["pao","branco","#EC008C","DOCERIA","pao","personalizado"],
+  // PAPEL ACOPLADO
+  ["acoplado", "portfolio/acoplado-01.png"],
+  ["acoplado", "portfolio/acoplado-02.png"],
+  ["acoplado", "portfolio/acoplado-03.png"],
 
-  ["saco","kraft","#101114","BURGER","saco"],
-  ["saco","branco","#00AEEF","DELIVERY","saco"],
+  // JOGO AMERICANO
+  ["jogo", "portfolio/jogo-americano-01.png"],
+  ["jogo", "portfolio/jogo-americano-02.png"],
 
-  ["sacola","branco","#101114","BOUTIQUE","sacola"],
-  ["sacola","preto","#F4F2EE","PREMIUM","sacola"],
-  ["sacola","kraft","#101114","VAREJO","sacola"],
+  // SACOS DE PAPEL
+  ["saco", "portfolio/saco-de-papel-01.png"],
+  ["saco", "portfolio/saco-de-papel-02.png"],
+  ["saco", "portfolio/saco-de-papel-03.png"],
+  ["saco", "portfolio/saco-de-papel-04.png"],
+  ["saco", "portfolio/saco-de-papel-05.png"],
+  ["saco", "portfolio/saco-de-papel-06.png"],
 
-  ["mini","kraft","#101114","DOCES","mini"],
-  ["mini","branco","#101114","PORÇÕES","mini"],
+  // SACOS PARA PÃES
+  ["pao", "portfolio/saco-pra-pao-01.png"],
+  ["pao", "portfolio/saco-pra-pao-02.png"],
+  ["pao", "portfolio/saco-pra-pao-03.png"],
+  ["pao", "portfolio/saco-pra-pao-04.png"],
 
-  ["talher","branco","#101114","BISTRÔ","talher"],
-  ["talher","kraft","#101114","MESA","talher"],
+  // SACOLAS DE PAPEL
+  ["sacola", "portfolio/sacola-de-papel-01.png"],
+  ["sacola", "portfolio/sacola-de-papel-02.png"],
+  ["sacola", "portfolio/sacola-de-papel-03.png"],
+  ["sacola", "portfolio/sacola-de-papel-04.png"],
+  ["sacola", "portfolio/sacola-de-papel-05.png"],
 
-  ["acoplado","kraft","#101114","GRILL","acoplado"],
-  ["acoplado","branco","#101114","SNACK","acoplado"],
-
-  ["jogo","branco","#101114","CAFÉ","jogo"],
-  ["jogo","branco","#EC008C","REDE","jogo"]
+  // EMBALAGENS PARA TALHERES
+  ["talher", "portfolio/talher-01.png"],
+  ["talher", "portfolio/talher-02.png"],
+  ["talher", "portfolio/talher-03.png"],
+  ["talher", "portfolio/talher-04.png"]
 
 ];
 
@@ -660,7 +672,7 @@ var CATNOME = {
   pao:"Sacos para pães",
   saco:"Sacos de papel",
   sacola:"Sacolas de papel",
-  mini:"Sacos mini",
+  // mini:"Sacos mini",
   talher:"Embalagens para talheres",
   acoplado:"Papel acoplado",
   jogo:"Jogo americano"
@@ -701,17 +713,17 @@ function cardProduto(p){
 function shot(item){
 
   return ''+
-    '<figure class="shot" style="margin:0">'+
+    '<figure class="shot portfolio-card" style="margin:0">'+
 
-      art(
-        item[0],
-        item[1],
-        item[2],
-        item[3]
-      )+
+      '<img '+
+        'src="'+item[1]+'" '+
+        'alt="'+CATNOME[item[0]]+'" '+
+        'loading="lazy" '+
+        'decoding="async"'+
+      '>'+
 
-      '<figcaption class="cat">'+
-        CATNOME[item[4]]+
+      '<figcaption class="portfolio-label">'+
+        CATNOME[item[0]]+
       '</figcaption>'+
 
     '</figure>';
@@ -848,7 +860,7 @@ PAGES.home = function(){
 
           '<div class="hero-cta">'+
 
-            '<a class="btn btn-primary" href="#/produtos">'+
+            '<a class="btn btn-primary" href="/produtos">'+
               'Conheça nossos produtos'+
             '</a>'+
 
@@ -900,7 +912,7 @@ PAGES.home = function(){
             'Hoje, seguimos evoluindo com o mesmo princípio que trouxe a Brolo até aqui: <strong>fazer bem feito e cuidar de quem confia a própria marca nas nossas mãos.</strong>'+
           '</p>'+
 
-          '<a class="btn btn-ghost" style="align-self:flex-start" href="#/sobre">'+
+          '<a class="btn btn-ghost" style="align-self:flex-start" href="/sobre">'+
             'Nossa história'+
           '</a>'+
 
@@ -1001,7 +1013,7 @@ PAGES.home = function(){
             'Trabalhamos com certificações que reforçam nosso compromisso com uma cadeia mais responsável e com impactos ambientais tratados de forma mensurável.'+
           '</p>'+
 
-          '<a class="btn btn-ghost" style="align-self:flex-start" href="#/sustentabilidade">'+
+          '<a class="btn btn-ghost" style="align-self:flex-start" href="/sustentabilidade">'+
             'Conheça nossas certificações'+
           '</a>'+
 
@@ -1046,7 +1058,7 @@ PAGES.home = function(){
           '<h2>O papel pode assumir muitas formas. A sua marca também.</h2>'+
         '</div>'+
 
-        '<a class="btn btn-ghost" href="#/produtos">'+
+        '<a class="btn btn-ghost" href="/produtos">'+
           'Ver catálogo completo'+
         '</a>'+
 
@@ -1243,23 +1255,15 @@ PAGES.produtos = function(){
    PORTFÓLIO
    ============================================================ */
 
-function filtrarPortfolio(cat, sub){
+function filtrarPortfolio(cat){
 
-  return PORTFOLIO.filter(function(i){
+  return PORTFOLIO.filter(function(item){
 
     if(cat === "todos"){
       return true;
     }
 
-    if(i[4] !== cat){
-      return false;
-    }
-
-    if(!sub || sub === "todos"){
-      return true;
-    }
-
-    return i[5] === sub;
+    return item[0] === cat;
 
   });
 
@@ -1760,42 +1764,26 @@ PAGES.contato = function(){
 
 function parse(){
 
-  var h = (location.hash || "#/")
-    .replace("#/","");
+  var path = location.pathname
+    .replace(/^\/+|\/+$/g, "");
 
-  var parts = h.split("?");
-
-  var route = parts[0] || "home";
+  var route = path || "home";
 
   var q = {};
 
+  var params = new URLSearchParams(location.search);
 
-  if(parts[1]){
-
-    parts[1]
-      .split("&")
-      .forEach(function(kv){
-
-        var p = kv.split("=");
-
-        q[p[0]] =
-          decodeURIComponent(
-            p[1] || ""
-          );
-
-      });
-
-  }
-
+  params.forEach(function(value, key){
+    q[key] = value;
+  });
 
   if(!PAGES[route]){
     route = "home";
   }
 
-
   return {
-    route:route,
-    q:q
+    route: route,
+    q: q
   };
 
 }
@@ -1861,7 +1849,7 @@ function wire(r){
         function(){
 
           var destino =
-            "#/portfolio?cat=" +
+            "/portfolio?cat=" +
             c.getAttribute("data-cat");
 
           var s =
@@ -1873,7 +1861,7 @@ function wire(r){
           }
 
 
-          location.hash = destino;
+          location.href = destino;
 
         }
       );
@@ -1925,7 +1913,7 @@ function wire(r){
 
 
       var url =
-        "#/portfolio?cat=" +
+        "/portfolio?cat=" +
         atual.cat;
 
 
@@ -2407,10 +2395,9 @@ if(burger){
 
 
 window.addEventListener(
-  "hashchange",
+  "popstate",
   render
 );
-
 
 render();
 

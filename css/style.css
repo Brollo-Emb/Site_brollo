@@ -3818,3 +3818,146 @@ html.anima .reveal.in{
 :root[data-theme="dark"] .depo-arrow{
   background:var(--surface);
 }
+/* ============================================================
+   PORTFÓLIO — GALERIA DE FOTOS
+   ============================================================ */
+
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 38px;
+}
+
+
+/* CARD */
+
+.gallery .portfolio-card{
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: #191b20;
+
+  cursor: pointer;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease;
+}
+
+
+/* FOTO */
+
+.gallery .portfolio-card img{
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* ZOOM SUAVE */
+
+.gallery .portfolio-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,.18);
+}
+
+.gallery .portfolio-card:hover img{
+  transform: scale(1.035);
+}
+
+
+/* DEGRADÊ INFERIOR */
+
+.gallery .portfolio-card::after{
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 35%;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.55),
+      rgba(0,0,0,0)
+    );
+
+  pointer-events: none;
+}
+
+
+/* CATEGORIA */
+
+.gallery .portfolio-label{
+  position: absolute;
+
+  left: 20px;
+  bottom: 18px;
+
+  z-index: 2;
+
+  padding: 9px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(15,16,19,.78);
+
+  border: 1px solid rgba(255,255,255,.15);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1000px){
+
+  .gallery{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+}
+
+
+/* CELULAR */
+
+@media (max-width: 640px){
+
+  .gallery{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .gallery .portfolio-card{
+    border-radius: 20px;
+  }
+
+}

@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/produtos", "destination": "/index.html" },
+    { "source": "/portfolio", "destination": "/index.html" },
+    { "source": "/sobre", "destination": "/index.html" },
+    { "source": "/sustentabilidade", "destination": "/index.html" },
+    { "source": "/contato", "destination": "/index.html" }
+  ]
+}
